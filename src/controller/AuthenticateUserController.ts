@@ -2,13 +2,16 @@ import { Request, Response } from "express";
 import { AutheticateUserService } from "../service/AuthenticateUserService";
 
 class AuthenticateUserController {
-  async handle(req: Request, res: Response) {
-    const { code } = req.body;
+  async handle(request: Request, response: Response) {
+    const { code } = request.body;
 
     const service = new AutheticateUserService();
-    const result = service.execute(code);
-
-    return res.json(result);
+    try {
+      const result = await service.execute(code);
+      return response.json(result);
+    } catch (err) {
+      return response.json({ error: err.message });
+    }
   }
 }
 
