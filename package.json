@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "src/server",
     "dev": "ts-node-dev --exit-child src/server.ts"
   },
   "keywords": [],
